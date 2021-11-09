@@ -17,11 +17,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import android.view.Window;
+import android.view.View;
 
 public class LoginActivity extends Activity {
     TextView reg;
     EditText inputEmail, inputPassword;
-    String email,password;
+    String email, password;
     Button btnlogin;
     private FirebaseAuth mAuth;
     ImageView btnfacebook;
@@ -43,11 +45,13 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 ceklogin();
+
+
             }
         });
 
 
-        reg = (TextView)findViewById(R.id.textView5);
+        reg = (TextView) findViewById(R.id.textView5);
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +62,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(LoginActivity.this,FacebookAuthActivity.class);
+                Intent intent = new Intent(LoginActivity.this, FacebookAuthActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
@@ -68,7 +72,7 @@ public class LoginActivity extends Activity {
         btngithub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,GitAuthActivity.class);
+                Intent intent = new Intent(LoginActivity.this, GitAuthActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
 
@@ -82,14 +86,16 @@ public class LoginActivity extends Activity {
         email = inputEmail.getText().toString();
         password = inputPassword.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email,password)
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
                             Toast.makeText(LoginActivity.this, "Login Sukses", Toast.LENGTH_LONG).show();
-
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
 
                             Toast.makeText(LoginActivity.this, "Login Gagal, email dan username salah", Toast.LENGTH_LONG).show();
@@ -99,3 +105,4 @@ public class LoginActivity extends Activity {
 
     }
 }
+

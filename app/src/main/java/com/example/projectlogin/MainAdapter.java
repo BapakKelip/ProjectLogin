@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,13 +51,22 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private RelativeLayout relativeLayout;
         private TextView date, judul;
         private ImageView imageView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             imageView = itemView.findViewById(R.id.imgberita);
             date = itemView.findViewById(R.id.txt_date);
             judul = itemView.findViewById(R.id.txt_judul);
+            relativeLayout = itemView.findViewById(R.id.relative_item);
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.call(getAdapterPosition());
+                }
+            });
         }
     }
 }

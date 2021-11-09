@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/relative_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -26,10 +27,10 @@
         app:layout_constraintTop_toTopOf="@id/txt_date" />
 
     <TextView
-        android:layout_toRightOf="@id/imgberita"
-        android:layout_below="@id/txt_judul"
         android:id="@+id/txt_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/txt_judul"
+        android:layout_toRightOf="@id/imgberita"
         android:text="Deskripsi Singkat Berita" />
 </RelativeLayout>
